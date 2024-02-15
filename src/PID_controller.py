@@ -9,13 +9,11 @@ class PIDController:
         self.target_value = init_target
 
 
-    def set_setpoint():
-        #TODO
-        pass
+    def set_setpoint(self, target):
+        self.target_value = target
 
-    def set_Kp():
-        #TODO
-        pass
+    def set_Kp(self, Kp):
+        self.Kp = Kp
 
     def set_Ki():
         #TODO
@@ -29,6 +27,9 @@ class PIDController:
         #TODO
         pass
 
-    def run():
-        #TODO
-        pass
+    def run(self, current_value):
+
+        #proportional control
+        control_value = (current_value - self.target_value) * self.Kp
+        
+        return control_value
