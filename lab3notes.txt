@@ -1,0 +1,45 @@
+- reuse code from previous labs to control a motor, read an encoder, and produce near-real-time plots of the motor’s position on a PC
+
+- Write a class which will perform closed-loop proportional control
+	- constructor setting proportional gain, initial setpoint, and other parameters
+	- method run() which is called repeatedly to run the control algorithm
+		- method should accept as parameters the setpoint and measured output
+		- return an actuation value which is sent to a device (motor for now)
+		- run() method should not contain a loop
+	- method set_setpoint() to set the setpoint
+	- method set_Kp() to set the control gain
+
+- program import motor_control and import encoder_reader to use the modules
+- Connect your motor and encoder to the second connections on the Nucleo and Shoe
+	- pins PA0, PA1, PC1, PC6, and PC7
+
+- Write a program main.py which runs the controller
+	- closed-loop step response tests 
+	- setpoint is changed so as to rotate the motor by about one revolution and stop
+	- controller should run about every 10ms or so	
+
+- store times and corresponding motor positions in two lists
+	- use utime.ticks_ms() to measure time because interrupts won’t be used for timing
+	- method in controller class prints the results of a step response test in two columns
+	- time and position
+	- don’t print results during the test, prints the results after the step has finished
+
+- main.py code so that it runs a loop, waiting for the user to enter a value for KP
+	- can use the input() method
+
+- Modify your Lab 0 Week 2 program to run step response tests with closed-loop controller
+	- don’t need to make a theoretical curve
+	- allow several step response tests with different values of KP
+
+- set up your system with a motor that has a flywheel
+
+- Test your system by doing step response plots at various different gains KP
+	- Adjust KP to get the best performance you can
+
+- Save a plot with step response curves at several different gains:
+	- One should show underdamped, slow performance (KP too low)
+	- One should show excessive oscillation (KP too high)
+	- One should show the best performance you have achieved
+
+- Create a README.md which describes in a couple of paragraphs your closed loop controller and step response test system
+	- It must be clear to the reader what tests you’ve performed, what the control gains were
