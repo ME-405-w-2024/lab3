@@ -30,6 +30,6 @@ class PIDController:
     def run(self, current_value):
 
         #proportional control
-        control_value = (current_value - self.target_value) * self.Kp
+        control_value = (self.target_value - current_value)  * self.Kp
         
         return control_value
