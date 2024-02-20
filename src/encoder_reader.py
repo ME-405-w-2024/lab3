@@ -1,10 +1,21 @@
+"""! @file encoder_reader.py
+
+
+"""
+
+
 import pyb
 
   
-AUTO_RELOAD_VALUE = 10000
-
+__AUTO_RELOAD_VALUE = 10000
 
 class Encoder:
+
+    """
+        Specifies and sets up an encoder counter using the internal timers.
+        Designed for quadrature encoders with two channels and no reset.
+        Handles any issues with timer overflow to allow for ease of use.
+    """
 
     def __init__ (self, 
                   inApin: pyb.Pin.board,
@@ -20,11 +31,11 @@ class Encoder:
             @param af_mode Alternate function timer to use
         """
 
-        encA_pin = pyb.Pin(inApin, mode=pyb.Pin.AF_PP, af=af_mode)
-        encB_pin = pyb.Pin(inBpin, mode=pyb.Pin.AF_PP, af=af_mode)
-        self.enc_timer = pyb.Timer(timer_num, prescaler=0, period=AUTO_RELOAD_VALUE-1)
+        self.__encA_pin = pyb.Pin(inApin, mode=pyb.Pin.AF_PP, af=af_mode)
+        self.__encB_pin = pyb.Pin(inBpin, mode=pyb.Pin.AF_PP, af=af_mode)
+        self.__enc_timer = pyb.Timer(timer_num, prescaler=0, period=__AUTO_RELOAD_VALUE-1)
         
-        timer_channel = self.enc_timer.channel(1,pyb.Timer.ENC_AB)
+        self.__timer_channel = self.__enc_timer.channel(1,pyb.Timer.ENC_AB)
 
         self.zero()
     
@@ -36,23 +47,23 @@ class Encoder:
             @return Position since last zero
         """        
 
-        current_count = self.enc_timer.counter()
+        current_count = self.__enc_timer.counter()
 
-        count_delta = self.last_count - current_count
+        count_delta = self.__last_count - current_count
 
-        if(abs(count_delta) > AUTO_RELOAD_VALUE/2):
+        if(abs(count_delta) > __AUTO_RELOAD_VALUE/2):
 
             if(count_delta < 0):
-                count_delta += AUTO_RELOAD_VALUE-1
+                count_delta += __AUTO_RELOAD_VALUE-1
 
             else:
-                count_delta -= AUTO_RELOAD_VALUE-1
+                count_delta -= __AUTO_RELOAD_VALUE-1
 
-        self.last_count = current_count
+        self.__last_count = current_count
 
-        self.position += count_delta
+        self.__position += count_delta
 
-        return self.position
+        return self.__position
     
 
     def zero(self):
@@ -61,8 +72,8 @@ class Encoder:
             Zeros out the position reading
         """
 
-        self.last_count = 0
-        self.position = 0
-        self.enc_timer.counter(0)
+        self.__last_count = 0
+        self.__position = 0
+        self.__enc_timer.counter(0)
         
 

@@ -1,7 +1,6 @@
-"""!
-@file display.py
+"""! @file display.py
 
-Run real and simulated dynamic response tests and plot the results. It uses Tkinter, an
+Runs a step response test and plots the results. It uses Tkinter, an
 old-fashioned and ugly but useful GUI library which is included in Python by default.
 This file is based loosely on an example found at
 https://matplotlib.org/stable/gallery/user_interfaces/embedding_in_tk_sgskip.html
@@ -10,39 +9,36 @@ distributed as part of the ME405 curriculum "lab0example.py".
 """
 
 # Imports
-import math
-import time
 import tkinter
 from random import random
 import serial
-import io
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg)
 from matplotlib.backends._backend_tk import (NavigationToolbar2Tk)
 
 # Constants
 # CHANGE THIS DEVICE DEPENDING ON SYSTEM TYPE
-#DEV_NAME = "COM6"
-DEV_NAME = "/dev/cu.usbmodem2052339C57522"
+#__DEV_NAME = "COM6"
+__DEV_NAME = "/dev/cu.usbmodem2052339C57522"
 
 
-def plot_RC_data(plot_axes, plot_canvas, xlabel, ylabel, textbox: tkinter.Text):
+def plot_step_data(plot_axes, plot_canvas, xlabel, ylabel, textbox: tkinter.Text):
     """!
-    @brief Plot data from a real-world RC response.
+    @brief Plot data from a real-world step response test.
     This function reads data from a serial port, then strips lines of strings,
     converting them to floating point numbers. Successfully gathered data is appended
-    to arrays of time and voltage.
-    To simplify code, plotting of the simulated response is called at the end of this function.
+    to arrays of time and encoder count.
     @param plot_axes The set of axes to plot data onto, from Matplotlib
     @param plot_canvas The canvas to plot data onto, from Matplotlib
     @param xlabel The label for the horizontal axis
     @param ylabel The label for the vertical axis
+    @param textbox A text box for user input of numeric value
     """
 
     times = []
     voltages = []   
 
-    ser = serial.Serial(DEV_NAME, 115200, timeout=2.1) 
+    ser = serial.Serial(__DEV_NAME, 115200, timeout=2.1) 
 
     serial_data = textbox.get(1.0, "end-1c")
 
@@ -135,7 +131,7 @@ def tk_matplot(plot_function, xlabel, ylabel, title):
 
 if __name__ == "__main__":
 
-    tk_matplot(plot_RC_data,
-               xlabel="Time [ms]",
-               ylabel="Encoder Ticks [#]",
-               title="Step Response")
+    tk_matplot(plot_step_data,
+               "Time [ms]",
+               "Encoder Ticks [#]",
+               "Step Response")

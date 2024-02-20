@@ -1,3 +1,10 @@
+"""! @file motor_driver.py
+
+Contains a class to drive brushed DC motors using the IHM04A1 motor driver from ST.
+https://www.st.com/en/ecosystems/x-nucleo-ihm04a1.html
+Supports bi-directional operation and speed control through PWM.
+"""
+
 import pyb
 
 
@@ -26,10 +33,10 @@ class MotorDriver:
             @param pwm_frequency Frequency to initialize the PWM for this driver channel
         """
 
-        self.en_pin = pyb.Pin(en_pin, pyb.Pin.OUT_PP)
+        self.__en_pin = pyb.Pin(en_pin, pyb.Pin.OUT_PP)
 
-        self.pin1_timer_channel = self.__setupmotor__(in1pin, in1_timer_num, in1_timer_channel_number, pwm_frequency)
-        self.pin2_timer_channel = self.__setupmotor__(in2pin, in2_timer_num, in2_timer_channel_number, pwm_frequency)
+        self.__pin1_timer_channel = self.__setupmotor__(in1pin, in1_timer_num, in1_timer_channel_number, pwm_frequency)
+        self.__pin2_timer_channel = self.__setupmotor__(in2pin, in2_timer_num, in2_timer_channel_number, pwm_frequency)
 
         
     def __setupmotor__(self, inpin: pyb.Pin.board, in_timer_num: int, in_timer_channel_number: int, pwm_frequency: int):
@@ -51,7 +58,7 @@ class MotorDriver:
         Enables the motor driver channel
         @param value Value of the enable pin. 1 is enabled, 0 is disabled
         """
-        self.en_pin.value(value)
+        self.__en_pin.value(value)
 
 
     def set_duty_cycle (self, level):
@@ -67,10 +74,10 @@ class MotorDriver:
 
 
         if(level < 0):
-            self.pin1_timer_channel.pulse_width_percent(level * -1)
-            self.pin2_timer_channel.pulse_width_percent(0)
+            self.__pin1_timer_channel.pulse_width_percent(level * -1)
+            self.__pin2_timer_channel.pulse_width_percent(0)
         else:
-            self.pin1_timer_channel.pulse_width_percent(0)
-            self.pin2_timer_channel.pulse_width_percent(level)
+            self.__pin1_timer_channel.pulse_width_percent(0)
+            self.__pin2_timer_channel.pulse_width_percent(level)
 
     
