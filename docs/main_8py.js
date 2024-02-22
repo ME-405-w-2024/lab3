@@ -1,0 +1,25 @@
+var main_8py =
+[
+    [ "control1_value", "main_8py.html#ad74b2e1cf3cc58f891587ce84016ac9f", null ],
+    [ "current_time_ms_appx", "main_8py.html#a9f2a33ee7c034e0aab8cde0f86bc6764", null ],
+    [ "done", "main_8py.html#ad88af6911a25ed600ce2943e18d7a458", null ],
+    [ "en_pin", "main_8py.html#a87970a5d04059649a6735a2a405477ea", null ],
+    [ "encoder1", "main_8py.html#aba9d9b2352ce59c6a1f84ee47dc46dd6", null ],
+    [ "ENCODER1_PIN_A", "main_8py.html#ab0b9046430fc48f8d31a610b7a9bd55d", null ],
+    [ "ENCODER1_PIN_B", "main_8py.html#a8994792ad295136d5d9ac94b64d93cee", null ],
+    [ "ENCODER1_TIMER_NUMBER", "main_8py.html#a307d4b574a145078487af3b0dd1b3134", null ],
+    [ "in1a_pin", "main_8py.html#a8d789f55d7028a6c135eab4970d9a1fb", null ],
+    [ "in1b_pin", "main_8py.html#ac89ccc6423bd38070c15521d061bb5df", null ],
+    [ "last_time", "main_8py.html#ab966662326ebf8f3995e7c025ee13f71", null ],
+    [ "motor", "main_8py.html#ae9ef27950b50e60a87c9742f2c535552", null ],
+    [ "p_controller1", "main_8py.html#a8f2fbf9a481c9c4c423f5edbb0ec044e", null ],
+    [ "position1", "main_8py.html#a2b67db62861a9801b9c2ee272997eeda", null ],
+    [ "position_values", "main_8py.html#adb548cd9532e44f3af590f275ddd08ad", null ],
+    [ "recieved_Kp", "main_8py.html#aef1c200d736a141e05260bc180a0e73f", null ],
+    [ "serial_value", "main_8py.html#a3998281e14c2ecef17cee3cbe0a3429d", null ],
+    [ "start_time", "main_8py.html#ae57958345b17f9ca8597330ba07e1a1c", null ],
+    [ "step_target", "main_8py.html#a5abc2216866109dab8aa2f71eba624a5", null ],
+    [ "TASK_DELAY_MS", "main_8py.html#a006b50b71abee10a497d77c6f4a7880e", null ],
+    [ "time_values", "main_8py.html#a6791422219a70c9cdfe37198a517cad7", null ],
+    [ "TIMEOUT_MS", "main_8py.html#a27abee0f444e696c3a040a26a26e6f98", null ]
+];
